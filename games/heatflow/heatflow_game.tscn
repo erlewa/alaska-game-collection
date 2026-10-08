@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cdckyod04bnwr"]
+
+[ext_resource type="PackedScene" uid="uid://b6j3w4ajf4m8x" path="res://games/heatflow/heatflow_toolbar/toolbar.tscn" id="1_faexn"]
+[ext_resource type="Script" uid="uid://6xu3hfog6siu" path="res://games/heatflow/block_control.gd" id="3_1lex2"]
+[ext_resource type="PackedScene" uid="uid://bkgafq5enymqo" path="res://games/heatflow/block_types/gui_block_snow.tscn" id="3_b27kw"]
+[ext_resource type="ButtonGroup" uid="uid://c5g60dvj6fep0" path="res://games/heatflow/heatflow_toolbar/toolbar_button_group.tres" id="3_c0xrv"]
+[ext_resource type="PackedScene" uid="uid://cf1cefkahim3u" path="res://games/heatflow/block_types/gui_block_delete.tscn" id="4_c0xrv"]
+[ext_resource type="PackedScene" uid="uid://bxhredokl57qt" path="res://games/heatflow/block_types/gui_block_fire.tscn" id="6_2hyq3"]
+
+[node name="HeatflowGame" type="Node2D" unique_id=1746755120]
+
+[node name="Toolbar" parent="." unique_id=1934337462 instance=ExtResource("1_faexn")]
+
+[node name="BlockControl" type="Control" parent="." unique_id=887975585 node_paths=PackedStringArray("gui_output")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_1lex2")
+toolbar = ExtResource("3_c0xrv")
+gui_output = NodePath(".")
+gui_block_delete = ExtResource("4_c0xrv")
+gui_block_snow = ExtResource("3_b27kw")
+gui_block_fire = ExtResource("6_2hyq3")

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://b6j3w4ajf4m8x"]
+
+[ext_resource type="Theme" uid="uid://ghvybigdagni" path="res://games/heatflow/heatflow_toolbar/toolbar_theme.tres" id="1_vxtst"]
+[ext_resource type="Texture2D" uid="uid://b1u3xaus2wphf" path="res://games/heatflow/icons/tool_back.png" id="2_fkmeh"]
+[ext_resource type="Script" uid="uid://lg1pod5yfpio" path="res://games/heatflow/heatflow_toolbar/tool_back.gd" id="3_gydkx"]
+[ext_resource type="Texture2D" uid="uid://d25nljxe1uwdk" path="res://games/heatflow/icons/tool_empty.png" id="4_5gdjn"]
+[ext_resource type="ButtonGroup" uid="uid://c5g60dvj6fep0" path="res://games/heatflow/heatflow_toolbar/toolbar_button_group.tres" id="5_yaw1x"]
+[ext_resource type="Texture2D" uid="uid://geca637x3ss2" path="res://games/heatflow/icons/tool_delete.png" id="6_2pxgg"]
+[ext_resource type="Texture2D" uid="uid://bakfvobcr8w7r" path="res://games/heatflow/icons/block_snow.png" id="7_v7y28"]
+[ext_resource type="Texture2D" uid="uid://ckhwbusur3wh0" path="res://games/heatflow/icons/block_fire.png" id="8_fkmeh"]
+
+[node name="Toolbar" type="Node2D" unique_id=1934337462]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=536053110]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1293118091]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control" unique_id=1921635431]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_vxtst")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer" unique_id=471955677]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer" unique_id=1813894661]
+layout_mode = 2
+tooltip_text = "Back to map"
+icon = ExtResource("2_fkmeh")
+script = ExtResource("3_gydkx")
+
+[node name="Blank" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer" unique_id=781869825]
+custom_maximum_size = Vector2(-1, 20)
+layout_mode = 2
+icon = ExtResource("4_5gdjn")
+
+[node name="ToolDelete" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer" unique_id=992887247]
+layout_mode = 2
+tooltip_text = "Delete blocks"
+toggle_mode = true
+button_group = ExtResource("5_yaw1x")
+icon = ExtResource("6_2pxgg")
+
+[node name="ToolSnow" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer" unique_id=1791633539]
+layout_mode = 2
+tooltip_text = "Snowblock"
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("5_yaw1x")
+icon = ExtResource("7_v7y28")
+
+[node name="ToolFire" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer" unique_id=546237650]
+layout_mode = 2
+tooltip_text = "Campfire"
+toggle_mode = true
+button_group = ExtResource("5_yaw1x")
+icon = ExtResource("8_fkmeh")
+
+[connection signal="pressed" from="CanvasLayer/Control/PanelContainer/VBoxContainer/BackButton" to="CanvasLayer/Control/PanelContainer/VBoxContainer/BackButton" method="_on_pressed"]
