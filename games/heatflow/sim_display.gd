@@ -8,7 +8,7 @@ const MAXGRID_X = BlockControl.MAXGRID_X
 const MAXGRID_Y = BlockControl.MAXGRID_Y
 
 # Our boundary values, initialized from the CPU by BlockControl
-@export var boundaries : Image = Image.create(MAXGRID_X,MAXGRID_Y,false,Image.FORMAT_RGBA8)
+@export var boundaries : Image = Image.create(MAXGRID_X,MAXGRID_Y,false,Image.FORMAT_RGBAF)
 @export var boundaries_texture : ImageTexture = ImageTexture.create_from_image(boundaries)
 
 # Simulation parameters

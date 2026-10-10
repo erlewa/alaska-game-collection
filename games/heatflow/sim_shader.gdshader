@@ -22,13 +22,15 @@ void fragment() {
     float t_down  = texture(state_tex, uv + vec2(0.0,  texel.y)).r;
 
     float neighbors = 0.25 * (t_left + t_right + t_up + t_down);
-	if (block.b>0.5) { // snow pixel: heat travels slowly
+	if (block.b>0.5) { // snow pixel: heat travels slowly (this doesn't seem to work well?)
 		t = mix(t,neighbors,0.05); // mostly our old temperature
 	} else { // ordinary pixel
 		t = mix(t,neighbors,0.95); // mostly neighbors (too much neighbor gives jangly checkerboards)
 	}
 	
-	const float t_snow = 0.2; // color temperature of snow (cool, but not as cold as the sky)
+	// color temperature of snow (cool, but *much* less cold than the sky)
+	//  fun fact: 20C to 0C is *halfway* to -20C
+	const float t_snow = 0.5; 
 	const float insulate_snow=0.98; // mostly old temperature
 	if (block.b>0.5) { // snow pixel
 		t=mix(t_snow,t,insulate_snow); 
@@ -40,9 +42,9 @@ void fragment() {
 		t=mix(t_fire,t,propagate_fire); // add heat, but in a limited way 
 	}
 	
-	const float t_sky = -2.0; // sky is really cold
+	const float t_sky = 0.0; // sky is really cold
 	if (uv.y<=texel.y) {  // top row: set cold sky boundary color
-		t=t_sky; // sky is maximum cold
+		t=t_sky; // sky is maximum cold, maximum strength
 	}
 	
 	
@@ -54,5 +56,10 @@ void fragment() {
 	if (t>1.0) {
 		over = t-1.0;
 	}
-    COLOR = vec4(t, g + over, b + over*0.5, 1.0);
+	const float underthresh = 0.2;
+	float under = 0.0; // visible undercooling
+	if (t<underthresh) {
+		under = underthresh - t;
+	}
+    COLOR = vec4(t, g + over, b + over - 3.0*under, 1.0);
 }
