@@ -6,6 +6,18 @@
 [ext_resource type="ButtonGroup" uid="uid://c5g60dvj6fep0" path="res://games/heatflow/heatflow_toolbar/toolbar_button_group.tres" id="3_c0xrv"]
 [ext_resource type="PackedScene" uid="uid://cf1cefkahim3u" path="res://games/heatflow/block_types/gui_block_delete.tscn" id="4_c0xrv"]
 [ext_resource type="PackedScene" uid="uid://bxhredokl57qt" path="res://games/heatflow/block_types/gui_block_fire.tscn" id="6_2hyq3"]
+[ext_resource type="Script" uid="uid://bqqktetgqowfp" path="res://games/heatflow/sim_display.gd" id="7_lgydu"]
+[ext_resource type="Shader" uid="uid://6bvitp3bab1w" path="res://games/heatflow/sim_shader.gdshader" id="8_oa4ug"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_dkiqr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10guh"]
+shader = ExtResource("8_oa4ug")
+shader_parameter/texel = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oa4ug"]
+shader = ExtResource("8_oa4ug")
+shader_parameter/texel = Vector2(0, 0)
 
 [node name="HeatflowGame" type="Node2D" unique_id=1746755120]
 
@@ -24,3 +36,35 @@ gui_output = NodePath(".")
 gui_block_delete = ExtResource("4_c0xrv")
 gui_block_snow = ExtResource("3_b27kw")
 gui_block_fire = ExtResource("6_2hyq3")
+
+[node name="SimDisplay" type="Sprite2D" parent="BlockControl" unique_id=1918238515]
+scale = Vector2(16, 16)
+texture = SubResource("ImageTexture_dkiqr")
+centered = false
+script = ExtResource("7_lgydu")
+
+[node name="ViewportA" type="SubViewport" parent="BlockControl/SimDisplay" unique_id=292075504]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 0
+
+[node name="RectA" type="ColorRect" parent="BlockControl/SimDisplay/ViewportA" unique_id=851040640]
+material = SubResource("ShaderMaterial_10guh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ViewportB" type="SubViewport" parent="BlockControl/SimDisplay" unique_id=899370972]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 0
+
+[node name="RectB" type="ColorRect" parent="BlockControl/SimDisplay/ViewportB" unique_id=1256402950]
+material = SubResource("ShaderMaterial_oa4ug")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -4,11 +4,15 @@
 #   - Graphical display
 #   - Simulation
 # Somehow, this should probably be broken up?
+#
+# Architected with help from Google Gemini, 
+# Code written by Orion Lawlor 2026-10 (this file Public Domain)
+class_name BlockControl
 extends Control
 
 const GRID_SIZE := 16 # Build anchor grid spacing in pixels
 const BLOCK_SIZE := 32 # Visual block size in pixels
-const MAXGRID_X = 70
+const MAXGRID_X = 64
 const MAXGRID_Y = 32
 
 # This is the main data storage for all blocks!
@@ -41,7 +45,7 @@ var gui_hoverblock_type : BlockType = BlockType.ERROR
 func _ready():
 	# Add strip of snow along bottom
 	for x in range(0,MAXGRID_X,2):
-		try_place_block(Vector2i(x,MAXGRID_Y-1),BlockType.SNOW)
+		try_place_block(Vector2i(x,MAXGRID_Y-2),BlockType.SNOW)
 
 # Create a gui block of this type
 func gui_block_create(type : BlockType) -> Sprite2D:
@@ -121,7 +125,7 @@ func grid_clear(g : Vector2i):
 
 # Return if this anchor grid position is valid for building
 func grid_buildable(g : Vector2i) -> bool:
-	return g.x in range(0, MAXGRID_X) and g.y in range(0, MAXGRID_Y)
+	return g.x in range(0, MAXGRID_X-1) and g.y in range(0, MAXGRID_Y-1)
 
 # Return true if anything in this grid box is already occupied (in any corner)
 #  dxl to dxh and dyl to dyh are low-to-high inclusive ranges
@@ -165,19 +169,69 @@ func try_place_block(g: Vector2i, type: BlockType) -> void:
 	data.loc = g
 	data.vel = Vector2(0,0)
 	data.mass = 1.0
-	data.temp = 0.0
+	data.temp = 200.0 if (type==BlockType.FIRE) else 0.0
 	
 	grid[g] = data
 
+
+# Update the simulation in SimDisplay with our data
+func update_sim():
+	var sim : SimDisplay = $SimDisplay # Simulation output
+	if sim == null:
+		print("BlockControl can't find SimDisplay in update_texture?")
+		return null
+	
+	# Might check if the boundaries image is unchanged here?
+	var boundaries : Image = sim.boundaries
+	boundaries.fill(Color.BLACK) # erase to all zeros
+	for g in grid: # loop over occupied grid cells
+		var data = grid[g] # fetch data at this cell
+					   #         red                green         blue
+		var color = Color(data.type==BlockType.FIRE, 0.0, data.type==BlockType.SNOW)
+		for dx in [0,1]: for dy in [0,1]: if g.y+dy<MAXGRID_Y:
+			boundaries.set_pixel(g.x+dx,g.y+dy,color)
+	sim.boundaries_updated()
+	
+	# Take a sim timestep
+	return sim.timestep()
+	
+
+# Stores updated dictionary used during physics_process.
+# https://docs.godotengine.org/en/stable/classes/class_dictionary.html#class-dictionary-method-erase:
+# "Do not erase entries while iterating over the dictionary. You can iterate over the keys() array instead."
+# (In practice erasing while iterating causes weirdly laggy updates as later iterations get skipped!)
+var grid_next: Dictionary = {}
+
+const physics_grid_timestep : float = 1.0/30.0 # timestep we use for grid updates
+var physics_time_saved : float = 0 # time saved up until next rate-limited physics
+
 # Simulate grid-based physics 
-# (inconsistently laggy, limited by GDScript performance?)
 func _physics_process(delta: float) -> void:
+	physics_time_saved += delta # save up realtime
+	if (physics_time_saved<physics_grid_timestep): 
+		return # not ready yet
+	# else we're ready to take a grid physics timestep
+	physics_time_saved -= physics_grid_timestep 
+	
+	var _simstate : Image = update_sim()
+	
+	# "Ping-pong" double buffered grid:
+	#  read from old grid, write to grid_next, then swap grids
 	for g in grid:
-		if g.y<MAXGRID_Y-1: # ignore bottom row
-			if not grid_occupied(g,-1,+1,+1,+2):
-				var data = grid[g]
-				grid.erase(g)
-				g.y=g.y+1 # move down
-				grid[g]=data
-				# Update GUI position
-				data.gui.global_position=screen_from_grid(g)
+		var data = grid[g]
+		if g.y>=MAXGRID_Y-1 or grid_occupied(g,-1,+1,+1,+2):
+			# Block is supported: retain unmodified
+			grid_next[g] = data 
+		else:
+			# Block is unsupported below: shift it down
+			g.y = g.y+1 
+			data.loc = g
+			grid_next[g]=data
+			# Update GUI position
+			data.gui.global_position=screen_from_grid(g)
+
+	# Swap grid and grid_next (via temporary, python tuple doesn't seem to work?)
+	var old_grid = grid 
+	grid = grid_next
+	grid_next = old_grid
+	grid_next.clear() # prep for next frame
