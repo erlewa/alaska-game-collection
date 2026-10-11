@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bkgafq5enymqo"]
+
+[ext_resource type="Texture2D" uid="uid://bakfvobcr8w7r" path="res://games/heatflow/icons/block_snow.png" id="1_xn3nv"]
+
+[node name="GuiBlockSnow" type="Sprite2D" unique_id=1897560382]
+texture = ExtResource("1_xn3nv")
+centered = false

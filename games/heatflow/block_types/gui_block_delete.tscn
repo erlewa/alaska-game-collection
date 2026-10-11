@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cf1cefkahim3u"]
+
+[ext_resource type="Texture2D" uid="uid://geca637x3ss2" path="res://games/heatflow/icons/tool_delete.png" id="1_rfmue"]
+
+[node name="GuiBlockDelete" type="Sprite2D" unique_id=1897560382]
+texture = ExtResource("1_rfmue")
+centered = false
