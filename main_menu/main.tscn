@@ -1,7 +1,26 @@
 [gd_scene format=3 uid="uid://kvxgscepw3go"]
 
-[ext_resource type="PackedScene" uid="uid://dmx4crls5pegi" path="res://main_menu/button_map.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://c8d1qnb4dqr8i" path="res://assets/alaskamap.jpg" id="1_qllij"]
+[ext_resource type="PackedScene" uid="uid://5b23dpjjs1oq" path="res://main_menu/game_button.tscn" id="2_ssk4e"]
+[ext_resource type="PackedScene" uid="uid://cdckyod04bnwr" path="res://games/heatflow/heatflow_game.tscn" id="3_3evlf"]
+[ext_resource type="Texture2D" uid="uid://c3j0rl0lbc5v6" path="res://assets/heatflow_thumbnail.jpg" id="3_jmc27"]
 
 [node name="Main" type="Node" unique_id=46989354]
 
-[node name="ButtonMap" parent="." unique_id=198791481 instance=ExtResource("1_ig7tw")]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=816226390]
+offset_left = -31.0
+offset_top = -6.0
+offset_right = 1177.0
+offset_bottom = 654.0
+texture = ExtResource("1_qllij")
+expand_mode = 1
+
+[node name="Button" parent="." unique_id=228710823 instance=ExtResource("2_ssk4e")]
+offset_left = 687.0
+offset_top = 106.0
+offset_right = 881.0
+offset_bottom = 148.0
+game_name = "Heatflow Simulation"
+game_scene = ExtResource("3_3evlf")
+thumbnail_image = ExtResource("3_jmc27")
+description = "A game about heatflow simulation!"
