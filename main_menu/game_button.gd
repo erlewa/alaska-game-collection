@@ -4,15 +4,26 @@ extends Button
 @export var game_scene: PackedScene
 @export var thumbnail_image: Texture2D
 @export var description: String
+@export var padding: int = 3
 
-@onready var tooltip: Control = %Tooltip
+@onready var tooltip: PanelContainer = %Tooltip
+@onready var v_box_container: VBoxContainer = %VBoxContainer
 @onready var thumbnail: TextureRect = %Thumbnail
 @onready var game_description: Label = %Description
+
+
 
 func _ready() -> void:
 	text = game_name
 	thumbnail.texture = thumbnail_image
 	game_description.text = description
+	tooltip.visible = false
+	
+	# Add padding
+	print("Tooltip: ", tooltip.size)
+	print("VBox: ", v_box_container.size)
+	tooltip.size = v_box_container.size + Vector2(padding * 2, padding * 6)
+	print("Tooltip: ", tooltip.size)
 
 func _on_mouse_entered() -> void:
 	tooltip.visible = true
