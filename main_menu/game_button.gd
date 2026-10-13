@@ -18,12 +18,6 @@ func _ready() -> void:
 	thumbnail.texture = thumbnail_image
 	game_description.text = description
 	tooltip.visible = false
-	
-	# Add padding
-	print("Tooltip: ", tooltip.size)
-	print("VBox: ", v_box_container.size)
-	tooltip.size = v_box_container.size + Vector2(padding * 2, padding * 6)
-	print("Tooltip: ", tooltip.size)
 
 func _on_mouse_entered() -> void:
 	tooltip.visible = true

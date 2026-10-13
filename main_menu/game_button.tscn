@@ -1,22 +1,52 @@
 [gd_scene format=3 uid="uid://5b23dpjjs1oq"]
 
 [ext_resource type="Script" uid="uid://1chjkrc0idsc" path="res://main_menu/game_button.gd" id="1_hpick"]
+[ext_resource type="Theme" uid="uid://doqc0kosm20lg" path="res://main_menu/main_theme.tres" id="1_mp08e"]
 [ext_resource type="Texture2D" uid="uid://c3j0rl0lbc5v6" path="res://assets/heatflow_thumbnail.jpg" id="2_tk47u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mp08e"]
+bg_color = Color(0.32156864, 0.32156864, 0.32156864, 0.78431374)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 3.0
+expand_margin_top = 2.0
+expand_margin_right = 3.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c50ni"]
+bg_color = Color(0.32156864, 0.32156864, 0.32156864, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="GameButton" type="Button" unique_id=228710823]
 z_index = 100
 offset_right = 194.0
 offset_bottom = 42.0
+theme = ExtResource("1_mp08e")
 script = ExtResource("1_hpick")
 
 [node name="Tooltip" type="PanelContainer" parent="." unique_id=379256378]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(220, 173)
 layout_mode = 0
 offset_left = 1.0
-offset_top = 43.0
-offset_right = 214.0
-offset_bottom = 207.0
+offset_top = 47.0
+offset_right = 218.0
+offset_bottom = 215.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mp08e")
 metadata/_edit_group_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tooltip" unique_id=1448975589]
@@ -27,13 +57,20 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="Tooltip/VBoxContainer" unique_id=430167232]
+[node name="PanelContainer" type="PanelContainer" parent="Tooltip/VBoxContainer" unique_id=1934476373]
+clip_children = 2
+layout_mode = 2
+theme = ExtResource("1_mp08e")
+theme_override_styles/panel = SubResource("StyleBoxFlat_c50ni")
+
+[node name="Thumbnail" type="TextureRect" parent="Tooltip/VBoxContainer/PanelContainer" unique_id=430167232]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(213, 120)
 custom_maximum_size = Vector2(-1, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme = ExtResource("1_mp08e")
 texture = ExtResource("2_tk47u")
 
 [node name="Description" type="Label" parent="Tooltip/VBoxContainer" unique_id=1426319497]
