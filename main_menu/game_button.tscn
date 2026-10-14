@@ -41,6 +41,7 @@ script = ExtResource("1_hpick")
 
 [node name="Tooltip" type="PanelContainer" parent="." unique_id=379256378]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 1.0
 offset_top = 47.0

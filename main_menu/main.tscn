@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://5b23dpjjs1oq" path="res://main_menu/game_button.tscn" id="2_ssk4e"]
 [ext_resource type="PackedScene" uid="uid://cdckyod04bnwr" path="res://games/heatflow/heatflow_game.tscn" id="3_3evlf"]
 [ext_resource type="Texture2D" uid="uid://c3j0rl0lbc5v6" path="res://assets/heatflow_thumbnail.jpg" id="3_jmc27"]
+[ext_resource type="PackedScene" uid="uid://vj1lwd6onyfd" path="res://games/raven_sim/main.tscn" id="5_5w8p7"]
 
 [node name="Main" type="Node" unique_id=46989354]
 
@@ -24,3 +25,12 @@ game_name = "Heatflow Simulation"
 game_scene = ExtResource("3_3evlf")
 thumbnail_image = ExtResource("3_jmc27")
 description = "A game about heatflow simulation!"
+
+[node name="RavenGameButton" parent="." unique_id=1648606600 instance=ExtResource("2_ssk4e")]
+offset_left = 625.0
+offset_top = 232.0
+offset_right = 819.0
+offset_bottom = 274.0
+game_name = "Raven Sim"
+game_scene = ExtResource("5_5w8p7")
+description = "A raven flight simulator"

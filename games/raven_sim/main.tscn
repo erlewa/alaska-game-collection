@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://vj1lwd6onyfd"]
+
+[ext_resource type="PackedScene" uid="uid://cxn1pgq7ctl88" path="res://games/raven_sim/raven.tscn" id="1_6cbbc"]
+[ext_resource type="PackedScene" uid="uid://ubgemigs7n46" path="res://games/raven_sim/level_0.tscn" id="2_vwmwf"]
+
+[node name="GameController" type="Node3D" unique_id=151397188]
+
+[node name="Raven" parent="." unique_id=1456134765 instance=ExtResource("1_6cbbc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9760864, 0)
+
+[node name="Level0" parent="." unique_id=1184008560 instance=ExtResource("2_vwmwf")]

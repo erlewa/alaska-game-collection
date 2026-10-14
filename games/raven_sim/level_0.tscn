@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://ubgemigs7n46"]
+
+[node name="Level0" type="Node3D" unique_id=1184008560]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2110610502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+size = Vector3(24, 0.3, 22.7)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1419774120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.545285, 2.15, 0)
+height = 6.3
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1436908220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.254715, 2.15, 0)
+height = 6.3
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=678744531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.545285, 2.15, 3.8)
+height = 6.3
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="." unique_id=1147813052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.545285, 2.15, -4.8999996)
+height = 6.3
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="." unique_id=201768199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6547155, 2.15, -3.4999995)
+height = 6.3
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="." unique_id=995198749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0547154, 2.15, 4.000001)
+height = 6.3
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="." unique_id=291538414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.554715, 2.15, 0.9000008)
+height = 6.3
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="." unique_id=227655847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.554715, 2.15, -8.299999)
+height = 6.3
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="." unique_id=466030003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3547149, 2.15, -8.299999)
+height = 6.3
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="." unique_id=661102018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8452854, 2.15, -8.299999)
+height = 6.3
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="." unique_id=219402252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.045286, 2.15, -5.499999)
+height = 6.3
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="." unique_id=87305597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.845286, 2.15, -0.8999989)
+height = 6.3
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="." unique_id=1828201676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.845286, 2.15, 4.1000013)
+height = 6.3
+
+[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="." unique_id=1970901592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1452866, 2.15, 7.8000016)
+height = 6.3
+
+[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="." unique_id=1862536971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045286655, 2.15, 7.8000016)
+height = 6.3
+
+[node name="CSGCylinder3D16" type="CSGCylinder3D" parent="." unique_id=815038199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8547134, 2.15, 5.3000016)
+height = 6.3
