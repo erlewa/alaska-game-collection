@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c7kw6tpybjo0c"]
+
+[ext_resource type="Texture2D" uid="uid://bvkfwg2lutb8p" path="res://games/raven_run/player/human/human_1.png" id="1_m8t55"]
+[ext_resource type="Texture2D" uid="uid://ccmaq23nredb6" path="res://games/raven_run/player/raven/raven_1.png" id="2_rmt32"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okk2s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m8t55")
+}],
+"loop": 1,
+"name": &"human",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8mhfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rmt32")
+}],
+"loop": 1,
+"name": &"raven",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8f2na"]
+radius = 28.8
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1799570049]
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="Human" type="AnimatedSprite2D" parent="." unique_id=911567729]
+texture_filter = 1
+position = Vector2(0, -28.8)
+scale = Vector2(7.2, 7.2)
+sprite_frames = SubResource("SpriteFrames_okk2s")
+animation = &"human"
+
+[node name="Raven" type="AnimatedSprite2D" parent="." unique_id=1466283485]
+visible = false
+texture_filter = 1
+position = Vector2(0, -57.6)
+scale = Vector2(7.2, 7.2)
+sprite_frames = SubResource("SpriteFrames_8mhfl")
+animation = &"raven"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1041771374]
+shape = SubResource("CircleShape2D_8f2na")
