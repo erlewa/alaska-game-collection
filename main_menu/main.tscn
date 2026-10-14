@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c8d1qnb4dqr8i" path="res://assets/alaskamap.jpg" id="1_qllij"]
 [ext_resource type="PackedScene" uid="uid://5b23dpjjs1oq" path="res://main_menu/game_button.tscn" id="2_ssk4e"]
 [ext_resource type="PackedScene" uid="uid://cdckyod04bnwr" path="res://games/heatflow/heatflow_game.tscn" id="3_3evlf"]
+[ext_resource type="PackedScene" uid="uid://e75i3qey2hie" path="res://games/raven_run/raven_run.tscn" id="3_5w8p7"]
 [ext_resource type="Texture2D" uid="uid://c3j0rl0lbc5v6" path="res://assets/heatflow_thumbnail.jpg" id="3_jmc27"]
 
 [node name="Main" type="Node" unique_id=46989354]
@@ -15,7 +16,16 @@ offset_bottom = 654.0
 texture = ExtResource("1_qllij")
 expand_mode = 1
 
-[node name="Button" parent="." unique_id=228710823 instance=ExtResource("2_ssk4e")]
+[node name="ButtonRavenRun" parent="." unique_id=228710823 instance=ExtResource("2_ssk4e")]
+offset_left = 574.0
+offset_top = 194.0
+offset_right = 768.0
+offset_bottom = 236.0
+game_name = "Raven Run"
+game_scene = ExtResource("3_5w8p7")
+description = "A game about turning into a raven"
+
+[node name="Button" parent="." unique_id=1854233112 instance=ExtResource("2_ssk4e")]
 offset_left = 687.0
 offset_top = 106.0
 offset_right = 881.0
